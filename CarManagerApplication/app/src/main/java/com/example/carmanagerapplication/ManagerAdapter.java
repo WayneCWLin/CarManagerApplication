@@ -34,7 +34,7 @@ public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ManagerDataModel currentEmp = manList.get(position);
-//        holder.name.setText(currentEmp.getName());
+        holder.name.setText(currentEmp.managerName);
     }
 
     // This class defines the ViewHolder object for each item in the RecyclerView

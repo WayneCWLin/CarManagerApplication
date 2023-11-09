@@ -3,12 +3,15 @@ package com.example.carmanagerapplication;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.carmanagerapplication.databinding.FragmentManagerListBinding;
 
 import java.util.ArrayList;
 
@@ -59,23 +62,20 @@ public class ManagerListFragment extends Fragment {
         }
     }
 
+    private ManagerViewModel viewModel;
+    private ManagerAdapter itemAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ArrayList<ManagerDataModel> managerList = getManagerData();
-        ManagerAdapter itemAdapter = new ManagerAdapter(managerList);
-        RecyclerView recyclerView = view.findViewById(R.id.recycleView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        viewModel = new ViewModelProvider(this).get(ManagerViewModel.class);
+        ArrayList<ManagerDataModel> managerList = viewModel.getManagerData();
+        itemAdapter = new ManagerAdapter(managerList);
+        FragmentManagerListBinding mBinding = FragmentManagerListBinding.inflate(inflater);
+        RecyclerView recyclerView = mBinding.recycleView;
         recyclerView.setAdapter(itemAdapter);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_manager_list, container, false);
-    }
-
-    private ArrayList getManagerData() {
-        ArrayList<ManagerDataModel> managerList = new ArrayList<ManagerDataModel>();
-        ManagerDataModel man1 = new ManagerDataModel("AudioManager");
-        managerList.add(man1);
-        return managerList;
     }
 
     @Override
