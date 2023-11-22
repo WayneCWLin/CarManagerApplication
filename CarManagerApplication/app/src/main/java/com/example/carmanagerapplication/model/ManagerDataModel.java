@@ -1,4 +1,4 @@
-package com.example.carmanagerapplication;
+package com.example.carmanagerapplication.model;
 
 public class ManagerDataModel {
     public String managerName;
