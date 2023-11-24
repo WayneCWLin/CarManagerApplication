@@ -3,6 +3,9 @@
 
     <data>
         <variable
+            name="itemClickListener"
+            type="com.example.carmanagerapplication.view.adapter.listener.ItemClickListener" />
+        <variable
             name="data"
             type="com.example.carmanagerapplication.model.ManagerDataModel" />
     </data>
@@ -18,8 +21,9 @@
             android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
+            android:onClick="@{()->itemClickListener.onItemClickListener(data)}"
             android:text="@{data.managerName}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

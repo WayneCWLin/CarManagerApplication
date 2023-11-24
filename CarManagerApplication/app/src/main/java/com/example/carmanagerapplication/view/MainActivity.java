@@ -5,6 +5,10 @@ import static android.car.CarAppFocusManager.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.car.Car;
 import android.car.CarAppFocusManager;
@@ -17,6 +21,7 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
+import com.example.carmanagerapplication.databinding.ActivityMainBinding;
 import com.example.carmanagerapplication.view.ManagerListFragment;
 import com.example.carmanagerapplication.R;
 
@@ -25,21 +30,38 @@ import java.io.FileNotFoundException;
 import java.util.concurrent.Executor;
 
 public class MainActivity extends AppCompatActivity {
-
+    private AppBarConfiguration appBarConfiguration;
+    private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        ManagerListFragment myFragment = new ManagerListFragment();
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+//        setSupportActionBar(binding.toolbar);
 
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        fragmentTransaction.add(R.id.fragment_container, myFragment);
 
-        fragmentTransaction.commit();
+//        ManagerListFragment myFragment = new ManagerListFragment();
+//
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//        fragmentTransaction.add(R.id.fragment_container, myFragment);
+//
+//        fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp();
     }
     ParcelFileDescriptor mParcelFileDescriptor;
 

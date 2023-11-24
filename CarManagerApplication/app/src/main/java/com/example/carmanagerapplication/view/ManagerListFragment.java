@@ -3,11 +3,9 @@ package com.example.carmanagerapplication.view;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +13,8 @@ import android.view.ViewGroup;
 
 import com.example.carmanagerapplication.R;
 import com.example.carmanagerapplication.databinding.FragmentManagerListBinding;
-import com.example.carmanagerapplication.model.ManagerDataModel;
 import com.example.carmanagerapplication.view.adapter.ManagerAdapter;
+import com.example.carmanagerapplication.view.adapter.listener.ItemClickListener;
 import com.example.carmanagerapplication.viewmodel.ManagerViewModel;
 
 import java.util.ArrayList;
@@ -39,6 +37,11 @@ public class ManagerListFragment extends BaseFragment {
     }
     private ManagerViewModel viewModel;
     private FragmentManagerListBinding binding;
+
+    private ItemClickListener itemClickListener = data -> {
+        NavHostFragment.findNavController(ManagerListFragment.this)
+                .navigate(R.id.action_CarManagerFragment_to_CarManagerApiFragment);
+    };
 
     @Override
     public View onCreateView(
@@ -65,6 +68,7 @@ public class ManagerListFragment extends BaseFragment {
 
     private void initAdapter(){
         ManagerAdapter adapter = new ManagerAdapter();
+        adapter.setItemClickListener(itemClickListener);
         binding.firstRecyclerview.setAdapter(adapter);
         viewModel.managerDataList.observe(getViewLifecycleOwner(), adapter::submitList);
     }

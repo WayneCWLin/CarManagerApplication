@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.carmanagerapplication.databinding.ItemsListBinding;
 import com.example.carmanagerapplication.model.ManagerDataModel;
+import com.example.carmanagerapplication.view.adapter.listener.ItemClickListener;
+import com.example.carmanagerapplication.view.viewholder.listener.BindClickListener;
 
-public class ManagerItemViewHolder extends RecyclerView.ViewHolder {
+public class ManagerItemViewHolder extends RecyclerView.ViewHolder implements BindClickListener {
 
     private ItemsListBinding binding;
     public ManagerItemViewHolder(ItemsListBinding binding) {
@@ -18,5 +20,10 @@ public class ManagerItemViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(ManagerDataModel data) {
         binding.setData(data);
+    }
+
+    @Override
+    public void bindEvents(ItemClickListener listener) {
+        binding.setItemClickListener(listener);
     }
 }

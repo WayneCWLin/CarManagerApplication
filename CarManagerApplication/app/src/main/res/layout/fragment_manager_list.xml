@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.CarManagerFragment">
+        tools:context=".view.ManagerListFragment">
 
         <TextView
             android:id="@+id/textview_first"
@@ -28,7 +28,7 @@
             android:id="@+id/button_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="next"
+            android:text="@string/next"
             android:onClick="@{()->managerViewModel.updateLabelValue()}"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"

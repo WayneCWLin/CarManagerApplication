@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/ManagerListFragment">
+    <fragment
+        android:id="@+id/ManagerListFragment"
+        android:name="com.example.carmanagerapplication.view.ManagerListFragment"
+        android:label="first_fragment_label"
+        tools:layout="@layout/fragment_manager_list">
+
+        <action
+            android:id="@+id/action_CarManagerFragment_to_CarManagerApiFragment"
+            app:destination="@id/ManagerApiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ManagerApiFragment"
+        android:name="com.example.carmanagerapplication.view.ManagerApiFragment"
+        android:label="second_fragment_label"
+        tools:layout="@layout/fragment_manager_api">
+
+        <action
+            android:id="@+id/action_CarManagerApiFragment_to_CarManagerFragment"
+            app:destination="@id/ManagerListFragment" />
+    </fragment>
+</navigation>
