@@ -21,13 +21,13 @@ public class ManagerViewModel extends ViewModel {
         _managerDataList.postValue(getManagerData());
     };
     private static final ManagerDataModel[] MANAGER_DATA_MODELS = {
-//            new ManagerDataModel("CarAudioManager"),
-//            new ManagerDataModel("CarAppFocusManager"),
-//            new ManagerDataModel("CarProjectionManager"),
-//            new ManagerDataModel("CarTestManagerBinderWrapper"),
-//            new ManagerDataModel("CarDrivingStateManager"),
-//            new ManagerDataModel("CarBugreportManager"),
-//            new ManagerDataModel("CarUserManager"),
+            new ManagerDataModel("CarAudioManager"),
+            new ManagerDataModel("CarAppFocusManager"),
+            new ManagerDataModel("CarProjectionManager"),
+            new ManagerDataModel("CarTestManagerBinderWrapper"),
+            new ManagerDataModel("CarDrivingStateManager"),
+            new ManagerDataModel("CarBugreportManager"),
+            new ManagerDataModel("CarUserManager"),
             new ManagerDataModel("CarWatchdogManager")
     };
 
